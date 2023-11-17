@@ -5,12 +5,17 @@ from django.db import models
 class CinemaStudio(models.Model):
     name = models.CharField(max_length=150, null=False, blank=False)
     logo = models.ImageField(upload_to='cs', null=True, blank=True)
+    # LOGIC ELIMINATION
+    state = models.BooleanField(default=True) 
+    
 
     def __str__(self) -> str:
         return self.name
 
 class Gender(models.Model):
     name = models.CharField(max_length=150, null=False, blank=False)
+    # LOGIC ELIMINATION
+    state = models.BooleanField(default=True) 
 
     def __str__(self) -> str:
         return self.name
@@ -24,11 +29,11 @@ CLASIFICATION = [
 class Movie(models.Model):
     name = models.CharField(max_length=150, null=False, blank=False)
     image = models.ImageField(upload_to='movies', null=True, blank=False)
-    resume = models.TextField()
+    resume = models.TextField(null=True, blank=True)
     clasification = models.CharField(max_length=5, choices=CLASIFICATION)
     release_date = models.DateField()
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='gender')
-    created_by = models.ForeignKey(CinemaStudio, on_delete=models.CASCADE, related_name='studio')
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='gender', null=True, blank=True)
+    created_by = models.ForeignKey(CinemaStudio, on_delete=models.CASCADE, related_name='studio', null=True, blank=True)
     available = models.BooleanField(default=True) 
     # LOGIC ELIMINATION
     state = models.BooleanField(default=True) 

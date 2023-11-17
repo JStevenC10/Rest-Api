@@ -13,9 +13,20 @@ class CinemaSerializer(serializers.ModelSerializer):
             'Logo': instance.logo.url if instance.logo else 'Logo not available'
         }
 
-
 # GENDER SERIALIZER
 class GenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gender
         fields = ('name',)
+
+# MOVIE LIST ALL SERIALIZER
+class MovieListserializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ('id', 'name', 'image', 'release_date', 'gender')
+
+# MOVIE CREATE SERIALIZER
+class Movieserializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        exclude = ('state',)
