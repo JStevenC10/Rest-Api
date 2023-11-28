@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
 
 from . import views
-from .jwt import urlpatterns
+from .login_and_register import urlpatterns
 
 router = DefaultRouter()
 

@@ -2,6 +2,18 @@ import requests
 
 ENDPOINT = 'http://127.0.0.1:8000/Api/'
 
+def register():
+    username = input('Username: ')
+    email = input('Email: ')
+    password = input('Password: ')
+    new_user = {
+        "username": username,
+        "email": email,
+        "password": password
+    }
+    response = requests.post(url=ENDPOINT + 'register/', data=new_user)
+    return response.json()
+
 def login():
     username = input('Username: ')
     password = input('Password: ')
@@ -14,6 +26,7 @@ def login():
 
 # TOKEN AUTHORIZATION FOR API 
 USER_LOGIN = login()
+USER_REGISTER = register()
 try:
     HEADERS = {
         'Authorization': 'Bearer {}'.format(USER_LOGIN['access'])
@@ -41,7 +54,7 @@ def post_api_movie():
     }
     response = requests.post(url=ENDPOINT + 'Movies/', data=new_movie, headers=HEADERS)
     return response.json()
-# print(post_api_movie())
+print(post_api_movie())
 
 # PATCH OR PARTIAL_UPDATE MOVIE
 def update_api_movie(pk):
@@ -51,7 +64,7 @@ def update_api_movie(pk):
     } 
     response = requests.patch(url=ENDPOINT + 'Movies/{}/'.format(pk), data=new_name, headers=HEADERS)
     return response.json()
-# print(update_api_movie(1))
+print(update_api_movie(1))
 
 # DELETE MOVIE
 def delete_api_movie(pk):

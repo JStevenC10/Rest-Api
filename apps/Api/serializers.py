@@ -1,5 +1,20 @@
+from django.contrib.auth.models import User
+
 from rest_framework import serializers
 from .models import CinemaStudio, Gender, Movie
+
+# USER SERIALIZER
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'password')
+    
+    # HASH PASSWORD WITH SERIALIZER
+    def create(self, validated_data):
+        user =  super().create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 # CINEMA SERIALIZER
 class CinemaSerializer(serializers.ModelSerializer):
