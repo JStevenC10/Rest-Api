@@ -44,6 +44,7 @@ class RegisterView(CreateAPIView):
 # CLASS REDEFINED FOR RESPONSE MIXINS
 class LoginView(TokenObtainPairView):
     serializer_class = TokenObtainPairSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         try:
