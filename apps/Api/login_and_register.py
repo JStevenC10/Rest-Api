@@ -70,6 +70,6 @@ class LoginView(TokenObtainPairView):
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
-    path('token/', LoginView.as_view(), name='login'),
+    path('login/', LoginView.as_view(), name='login'),
     path('refresh/token/', TokenRefreshView.as_view(), name='refresh'),
 ]
