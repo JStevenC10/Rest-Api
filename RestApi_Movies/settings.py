@@ -47,6 +47,7 @@ LOCAL_APPS = [
 THIRDS_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRDS_APPS
