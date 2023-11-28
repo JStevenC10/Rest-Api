@@ -9,7 +9,7 @@ from .serializers import CinemaSerializer, GenderSerializer, MovieListserializer
 
 class CinemaViewset(ModelViewSet):
     serializer_class = CinemaSerializer
-    
+
     def get_queryset(self, pk=None):
         if pk == None:
             return self.serializer_class.Meta.model.objects.all()
